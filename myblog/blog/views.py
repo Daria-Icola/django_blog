@@ -1,3 +1,9 @@
 from django.shortcuts import render
+from django.views.generic.base import View
+from .models import PostBlog
 
-# Create your views here.
+class PostView(View):
+    def get(self, request):
+        posts = PostBlog.objects.all()
+        return render(request, 'blog/blog.html', {'post_list': posts})
+
